@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Index Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Age</th>
+							<th>Description</th>
+							<th>Update</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-light" th:each="familyMember:${familyMemberList}">
+							<td th:text="${familyMember.name}"></td>
+							<td th:text="${familyMember.email}"></td>
+							<td th:text="${familyMember.age}"></td>
+							<td th:text="${familyMember.description}"></td>
+							
+							<td><a th:href="@{/{familyMemberId}(familyMemberId=${familyMember.familyMemberId})}" class="btn btn-primary">
+									<span class="glyphicon glyphicon-edit" ></span>
+									
+									
+							</a></td>
+							
+							<td><a th:href="@{/familyMembers/delete/{familyMemberId}(familyMemberId=${familyMember.familyMemberId})}" class="btn btn-primary">			
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>					
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
